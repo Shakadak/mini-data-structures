@@ -9,3 +9,19 @@ void	*get_value(t_node n)
 {
 	return (n.value);
 }
+
+t_node	*get_next(t_node n)
+{
+	return (n.next);
+}
+
+void	set_value(t_node *n, void *v)
+{
+	n->value = v;
+}
+
+void	set_next(t_node *n, t_node *next)
+{
+	n->next = next;
+}
+
