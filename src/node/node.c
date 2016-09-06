@@ -20,8 +20,9 @@ void	set_value(t_node *n, void *v)
 	n->value = v;
 }
 
-void	set_next(t_node *n, t_node *next)
+t_node	*set_next(t_node *n, t_node *next)
 {
 	n->next = next;
+	return (next);
 }
 
