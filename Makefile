@@ -16,6 +16,8 @@ NAME		:=	libds.a
 
 DIRSRC		:=	src
 DIROBJ		:=	obj
+DIRDARRAY	:=	$(DIRSRC)/darray
+DIRMEM		:=	$(DIRSRC)/mem
 DIRNODE		:=	$(DIRSRC)/node
 DIRINC		:=	inc
 
@@ -23,6 +25,8 @@ DIRINC		:=	inc
 
 ### FILES: SOURCES ###
 
+include $(DIRDARRAY)/src.mk
+include $(DIRMEM)/src.mk
 include $(DIRNODE)/src.mk
 
 ### FILES: PATHS ###
@@ -37,6 +41,7 @@ AR_EXEC		=	$(AR) $(AR_FLAG) $@ $^
 
 ### COMPILATION ###
 
+CC			:=	clang
 C_FLAG		:=	-Wall -Wextra -Werror
 I_FLAG		:=	-I $(DIRINC) -I .
 O_FLAG		:=	-O3
