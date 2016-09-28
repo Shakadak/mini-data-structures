@@ -25,4 +25,3 @@ t_node	*set_next(t_node *n, t_node *next)
 	n->next = next;
 	return (next);
 }
-
