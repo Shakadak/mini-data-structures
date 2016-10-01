@@ -17,7 +17,7 @@ t_darray	make_array(size_t x_size, size_t capacity, double growth_factor)
 	}
 	ret.x_size = x_size;
 	ret.used = 0;
-	ret.gf = growth_factor;
+	ret.gf = growth_factor <= 1.0 ? 2 : growth_factor;
 	return (ret);
 }
 
@@ -31,4 +31,3 @@ t_darray	darray_set_at(t_darray *a, size_t i, void *val)
 	ft_memcpy(a->xs + i * a->x_size, val, a->x_size);
 	return (*a);
 }
-

@@ -1,4 +1,5 @@
-DARRAY	:=	darray_basic.c
+DARRAY	:=	darray_basic.c \
+			darray_mem.c
 
 OBJ := $(OBJ) $(DARRAY:.c=.o)
 
