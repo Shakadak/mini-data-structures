@@ -1,2 +1,2 @@
 # mini-data-structures
-Preping up some data structures.
+Prepping up some data structures.
