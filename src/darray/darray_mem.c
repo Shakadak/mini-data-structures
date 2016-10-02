@@ -18,7 +18,8 @@ t_darray	*darray_expand(t_darray *a)
 {
 	void	*new;
 
-	new = malloc(a->x_size * (a->capacity * a->gf + 1));
+	a->capacity = a->capacity * a->gf + 1;
+	new = malloc(a->x_size * (a->capacity));
 	ft_memcpy(new, a->xs, a->used * a->x_size);
 	free(a->xs);
 	a->xs = new;

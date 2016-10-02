@@ -15,8 +15,8 @@
 
 t_darray	*darray_push(void *v, t_darray *a)
 {
-	return (darray_set_at(a->used++, v
-				, a->used == a->capacity ? darray_expand(a) : a));
+	return (darray_set_at(a->used, v
+				, a->used++ == a->capacity ? darray_expand(a) : a));
 }
 
 void		*darray_pop(t_darray *a)
