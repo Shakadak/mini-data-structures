@@ -16,7 +16,7 @@ NAME		:=	libmds.a
 
 DIRSRC		:=	src
 DIROBJ		:=	obj
-DIRTST		:=	tst
+DIRTST		:=	test
 DIRLIB		:=	lib
 DIRBIN		:=	bin
 DIRDARRAY	:=	$(DIRSRC)/darray
@@ -50,13 +50,15 @@ I_FLAG		:=	-I $(DIRINC) -I .
 O_FLAG		:=	-O3
 C_OPT		=	-o $@ -c $< $(I_FLAG)
 COMPIL		=	$(CC) $(C_FLAG) $(O_FLAG) $(C_OPT)
+L_FLAG		:= -L $(DIRLIB) -lmds
 
 ### RULES ###
 
 all: $(DIRLIB)/$(NAME)
 
 test: $(DIRLIB)/$(NAME)
-	make -C test
+	$(CC) $(C_FLAG) $(I_FLAG) $(L_FLAG) -o $(DIRTST)/test.tst $(DIRTST)/darray_test.c
+	./$(DIRTST)/test.tst
 	
 
 ### RULES: ARCHIVE ###
@@ -75,14 +77,12 @@ $(DIROBJ):
 $(DIRLIB):
 	mkdir $(DIRLIB)
 
-$(DIRTST):
-	mkdir $(DIRTST)
-
 clean:
 	rm -f $(POBJ)
 
 fclean: clean
 	rm -f $(DIRLIB)/$(NAME)
+	rm -f $(DIRTST)/test.tst
 
 re: fclean all
 
