@@ -16,6 +16,9 @@ NAME		:=	libmds.a
 
 DIRSRC		:=	src
 DIROBJ		:=	obj
+DIRTST		:=	tst
+DIRLIB		:=	lib
+DIRBIN		:=	bin
 DIRDARRAY	:=	$(DIRSRC)/darray
 DIRMEM		:=	$(DIRSRC)/mem
 DIRNODE		:=	$(DIRSRC)/node
@@ -50,13 +53,17 @@ COMPIL		=	$(CC) $(C_FLAG) $(O_FLAG) $(C_OPT)
 
 ### RULES ###
 
-all: $(NAME)
+all: $(DIRLIB)/$(NAME)
+
+test: $(DIRLIB)/$(NAME)
+	make -C test
+	
 
 ### RULES: ARCHIVE ###
 
-$(NAME): $(POBJ)
+$(DIRLIB)/$(NAME): $(POBJ) |$(DIRLIB)
 	$(AR_EXEC)
-	ranlib $(NAME)
+	ranlib $@
 
 ### RULES: MISC ###
 
@@ -65,12 +72,18 @@ $(POBJ): |$(DIROBJ)
 $(DIROBJ):
 	mkdir $(DIROBJ)
 
+$(DIRLIB):
+	mkdir $(DIRLIB)
+
+$(DIRTST):
+	mkdir $(DIRTST)
+
 clean:
 	rm -f $(POBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(DIRLIB)/$(NAME)
 
-re: fclean $(NAME)
+re: fclean all
 
-.PHONY: all clean re fclean
+.PHONY: all test clean re fclean
